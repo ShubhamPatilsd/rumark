@@ -6,6 +6,14 @@ import { useState, Fragment } from "react";
 import Navbar from "../components/Navbar";
 import { getPosts } from "./api/get";
 import Mark from "../components/Mark";
+import Masonry from "react-masonry-css";
+
+const breakpointColumnsObj = {
+  default: 4,
+  1100: 3,
+  700: 2,
+  500: 1,
+};
 
 export default function Home(props) {
   return (
@@ -22,17 +30,24 @@ export default function Home(props) {
         </Head>
       </div>
       <div>
-        {props.marks.map((mark, i) => {
-          return (
-            <div key={i}>
-              <Mark
-                username={mark.username}
-                message={mark.mark_data}
-                date={mark.date}
-              />
-            </div>
-          );
-        })}
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="my-masonry-grid"
+          style={{ padding: "2rem" }}
+          columnClassName="my-masonry-grid_column"
+        >
+          {props.marks.map((mark, i) => {
+            return (
+              <div key={i}>
+                <Mark
+                  username={mark.username}
+                  message={mark.mark_data}
+                  date={mark.date}
+                />
+              </div>
+            );
+          })}
+        </Masonry>
       </div>
     </>
   );

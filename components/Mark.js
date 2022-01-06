@@ -9,7 +9,7 @@ function parseTwitterDate(tdate) {
   } else if (diff <= 3540) {
     return Math.round(diff / 60) + "m";
   } else if (diff <= 86400) {
-    return Math.round(diff / 3600) + " h";
+    return Math.round(diff / 3600) + "h";
   } else if (diff < 604800) {
     return Math.round(diff / 86400) + "d";
   } else {
